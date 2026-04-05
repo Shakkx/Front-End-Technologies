@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Your Name | CSE Student Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafcff;
+      color: #1a2a3f;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    nav {
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 1.6rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #2563eb;
+      color: #2563eb;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #2563eb;
+      border-radius: 4px;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      background: #e0e7ff;
+      color: #2563eb;
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #334155;
+      margin-bottom: 1.5rem;
+      max-width: 550px;
+    }
+
+    .hero-image {
+      flex: 0.8;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 220px;
+      height: 220px;
+      background: linear-gradient(145deg, #e0e7ff, #c7d2fe);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar i {
+      font-size: 6rem;
+      color: #4f46e5;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card {
+      background: white;
+      border-radius: 32px;
+      padding: 0.7rem 1.3rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      border: 1px solid #eef2ff;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+    }
+
+    .skill-card i {
+      font-size: 1.2rem;
+      color: #2563eb;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      border-color: #2563eb;
+    }
+
+    /* Soft Skills Section */
+    .soft-skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .soft-skill-card {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+      border-radius: 1rem;
+      padding: 1.2rem 1.8rem;
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .soft-skill-card i {
+      font-size: 2rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .soft-skill-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.08);
+      transition: 0.25s ease;
+      border: 1px solid #edf2f7;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-img {
+      height: 160px;
+      background: linear-gradient(135deg, #2563eb20, #7c3aed20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #2563eb;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-info h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      color: #475569;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2563eb;
+      margin-right: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Resume Section */
+    .resume-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.06);
+    }
+
+    .resume-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .resume-text {
+      flex: 2;
+    }
+
+    .education-item {
+      margin: 1rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #2563eb;
+    }
+
+    /* Contact */
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+
+    .contact-info {
+      flex: 1;
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      border: 1px solid #eef2f6;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-detail i {
+      width: 35px;
+      font-size: 1.2rem;
+      color: #2563eb;
+    }
+
+    .contact-form {
+      flex: 1.5;
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      border: 1px solid #eef2f6;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      font-family: inherit;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .toast-msg {
+      margin-top: 1rem;
+      padding: 0.6rem;
+      text-align: center;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #5b6e8c;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .section-title {
+        display: block;
+        text-align: center;
+      }
+      .soft-skills-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-container">
+    <div class="logo">&lt;CSE Student /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero / Intro Section -->
+  <section id="home">
+    <div class="container hero">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-user-graduate"></i> 2nd Year CSE Student</span>
+        <h1>Hi, I'm <span class="highlight">[Your Name]</span><br>Future Software Engineer</h1>
+        <p>Passionate about coding, problem-solving, and building meaningful tech solutions. Currently exploring the world of algorithms and web development.</p>
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn btn-outline" style="margin-left: 0.8rem;">Contact Me</a>
+      </div>
+      <div class="hero-image">
+        <div class="avatar">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">💻 Technical Skills</h2>
+      <div class="skills-grid" id="techSkillsGrid"></div>
+      
+      <h2 class="section-title" style="margin-top: 3rem;">🎤 Soft Skills</h2>
+      <div class="soft-skills-grid">
+        <div class="soft-skill-card">
+          <i class="fas fa-comments"></i>
+          <h4>Communication</h4>
+        </div>
+        <div class="soft-skill-card">
+          <i class="fas fa-chalkboard-user"></i>
+          <h4>Presentation</h4>
+        </div>
+        <div class="soft-skill-card">
+          <i class="fas fa-users"></i>
+          <h4>Team Collaboration</h4>
+        </div>
+        <div class="soft-skill-card">
+          <i class="fas fa-lightbulb"></i>
+          <h4>Problem Solving</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">🚀 My Projects</h2>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Resume / Education Section -->
+  <section id="resume">
+    <div class="container">
+      <h2 class="section-title">📚 Education & Journey</h2>
+      <div class="resume-card">
+        <div class="resume-flex">
+          <div class="resume-text">
+            <div class="education-item">
+              <h3><i class="fas fa-university"></i> Bachelor of Technology - CSE</h3>
+              <p><strong>2nd Year Student</strong> | 2024 - 2028</p>
+              <p>CGPA: 8.5/10 (Currently)</p>
+            </div>
+            <div class="education-item">
+              <h3><i class="fas fa-code"></i> Relevant Coursework</h3>
+              <p>Data Structures & Algorithms | Object Oriented Programming | Database Management | Web Development Basics</p>
+            </div>
+            <div class="education-item">
+              <h3><i class="fas fa-trophy"></i> Achievements</h3>
+              <p>• Presented technical paper at college symposium<br>• Completed NPTEL course on Programming in Java<br>• Active member of Coding Club</p>
+            </div>
+          </div>
+          <div class="resume-btn">
+            <a href="#" class="btn" id="resumeBtn"><i class="fas fa-download"></i> Download Resume</a>
+            <p style="font-size: 0.7rem; margin-top: 10px;">*Demo - shows preview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">📬 Let's Connect</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <div class="contact-detail"><i class="fas fa-envelope"></i> <span>your.name@university.edu</span></div>
+          <div class="contact-detail"><i class="fab fa-github"></i> <span>/yourgithub</span></div>
+          <div class="contact-detail"><i class="fab fa-linkedin"></i> <span>/in/yourlinkedin</span></div>
+          <div class="contact-detail"><i class="fab fa-twitter"></i> <span>@yourhandle</span></div>
+          <div class="contact-detail"><i class="fas fa-map-marker-alt"></i> <span>Your City, India</span></div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" id="name" placeholder="Your Name *" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder="Email Address *" required>
+            </div>
+            <div class="form-group">
+              <textarea rows="4" id="message" placeholder="Message / Opportunity details..."></textarea>
+            </div>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+            <div id="formFeedback" class="toast-msg"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 [Your Name] | CSE Student Portfolio | Built with <i class="fas fa-heart" style="color: #ef4444;"></i> using HTML/CSS/JS</p>
+</footer>
+
+<script>
+  (function() {
+    // ----- YOUR TECHNICAL SKILLS (C, C++, Java, Python, HTML, CSS)
+    const techSkills = [
+      { name: "C", icon: "fas fa-code" },
+      { name: "C++", icon: "fas fa-code-branch" },
+      { name: "Java", icon: "fab fa-java" },
+      { name: "Python", icon: "fab fa-python" },
+      { name: "HTML5", icon: "fab fa-html5" },
+      { name: "CSS3", icon: "fab fa-css3-alt" },
+      { name: "Data Structures", icon: "fas fa-diagram-project" },
+      { name: "Problem Solving", icon: "fas fa-brain" }
+    ];
+
+    const skillsContainer = document.getElementById("techSkillsGrid");
+    if (skillsContainer) {
+      techSkills.forEach(skill => {
+        const card = document.createElement("div");
+        card.className = "skill-card";
+        card.innerHTML = `<i class="${skill.icon}"></i> <span>${skill.name}</span>`;
+        skillsContainer.appendChild(card);
+      });
+    }
+
+    // ----- PROJECTS (beginner-friendly projects a 2nd year student might have)
+    const projectsData = [
+      {
+        title: "Student Management System",
+        desc: "Console-based app in C++ to manage student records, grades, and attendance using file handling.",
+        tech: ["C++", "File I/O", "OOP"],
+        icon: "fas fa-graduation-cap"
+      },
+      {
+        title: "Personal Portfolio Website",
+        desc: "Responsive portfolio site built with HTML, CSS, and JavaScript to showcase skills and projects.",
+        tech: ["HTML", "CSS", "JavaScript"],
+        icon: "fas fa-globe"
+      },
+      {
+        title: "Calculator App",
+        desc: "Simple yet functional calculator using Java Swing for GUI - basic arithmetic operations.",
+        tech: ["Java", "Swing", "Event Handling"],
+        icon: "fas fa-calculator"
+      },
+      {
+        title: "Weather CLI Tool",
+        desc: "Python script that fetches real-time weather data using OpenWeatherMap API.",
+        tech: ["Python", "APIs", "JSON"],
+        icon: "fas fa-cloud-sun"
+      }
+    ];
+
+    const projectsGrid = document.getElementById("projectsGrid");
+    if (projectsGrid) {
+      projectsData.forEach(project => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+        const techHtml = project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+        card.innerHTML = `
+          <div class="project-img">
+            <i class="${project.icon}" style="font-size: 2.8rem;"></i>
+          </div>
+          <div class="project-info">
+            <h3>${project.title}</h3>
+            <p>${project.desc}</p>
+            <div>${techHtml}</div>
+          </div>
+        `;
+        projectsGrid.appendChild(card);
+      });
+    }
+
+    // ----- RESUME BUTTON (simple alert)
+    const resumeBtn = document.getElementById("resumeBtn");
+    if (resumeBtn) {
+      resumeBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        alert("📄 [Your Name] - CSE Resume\n\n2nd Year Student\nSkills: C, C++, Java, Python, HTML, CSS\nStrong communication & presentation abilities\nLooking for internship opportunities!");
+      });
+    }
+
+    // ----- CONTACT FORM (simple validation)
+    const form = document.getElementById("contactForm");
+    const feedback = document.getElementById("formFeedback");
+
+    if (form) {
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+          feedback.style.display = "block";
+          feedback.style.backgroundColor = "#fee2e2";
+          feedback.style.color = "#b91c1c";
+          feedback.innerHTML = "❌ Please fill all fields before sending.";
+          setTimeout(() => feedback.style.display = "none", 3000);
+          return;
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          feedback.style.display = "block";
+          feedback.style.backgroundColor = "#fee2e2";
+          feedback.style.color = "#b91c1c";
+          feedback.innerHTML = "❌ Please enter a valid email address.";
+          setTimeout(() => feedback.style.display = "none", 3000);
+          return;
+        }
+
+        // Success message
+        feedback.style.display = "block";
+        feedback.style.backgroundColor = "#dcfce7";
+        feedback.style.color = "#166534";
+        feedback.innerHTML = `✅ Thanks ${name}! I'll get back to you soon.`;
+        form.reset();
+        setTimeout(() => feedback.style.display = "none", 4000);
+      });
+    }
+
+    // Smooth scroll for nav links with offset for sticky header
+    const nav = document.querySelector('nav');
+    const navHeight = nav ? nav.offsetHeight : 70;
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(targetId);
+          if (target) {
+            const offset = target.offsetTop - navHeight - 10;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Avatar hover effect (minimal JS)
+    const avatar = document.querySelector('.avatar');
+    if (avatar) {
+      avatar.addEventListener('mouseenter', () => {
+        avatar.style.transform = "scale(1.02)";
+        avatar.style.transition = "0.2s";
+      });
+      avatar.addEventListener('mouseleave', () => {
+        avatar.style.transform = "scale(1)";
+      });
+    }
+
+    console.log("✅ Portfolio loaded! Customized for CSE 2nd year student.");
+  })();
+</script>
+</body>
+</html>
